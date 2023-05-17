@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BotManController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,14 +53,55 @@ Route::get("httpdata", [UserController::class, 'gethttp']);
 Route::match (['get', 'post'], '/botman', [BotManController::class, 'handle']);
 
 
+Route::post('/login', [LoginController::class,'login']);
+    // Your protected routes go here
+    Route::view("adminhome", "adminhome");
+   //add Course
+Route::view("/addcourse","manageCourse.addCourse");
+//view Course
+Route::get("/viewcourse",[AdminController::class,'getCourse']);
+//adding the course form
+Route::post("/addc",[AdminController::class,'addCourse']);
+//edit course
+Route::get("/editcourse",[AdminController::class,'editCourse']);
+//add chapter
+Route::get("/addchapter",[AdminController::class,'getCourseAddChapter']);
+//adding the chapter
 
+Route::post("/addchap",[AdminController::class,'addChapter']);
+//get chapter
+Route::get("/viewchapter",[AdminController::class,'getChapter']);
 
+//add Question
+
+//subtopic
+Route::get("/addsubtopic",[AdminController::class,'getSubtopicChapter']);
+//adding the subtopic
+Route::post("/addsubt",[AdminController::class,'addSubtopic']);
+//viewsubtopic
+Route::get("/viewsubtopic",[AdminController::class,'getSubTopic']);
+
+//navigate to page
+// Route::view("/addquestion", "manageQuest.addquestion");
+Route::get("/addquestion", [AdminController::class,'getSubtopicQuestion']);
+
+//adding the question from form
+Route::post("/add",[AdminController::class,'addQuestion']);
+
+//add Question
+
+//navigate to page 
+
+//navigate to page
+Route::get('/viewquestion',[AdminController::class,'getQuestion']);
+Route::get('/viewcourse',[AdminController::class,'getCourse']);
+Route::get('/trial',[AdminController::class,'trial']);
 
 //cares official code starts here
 
 //admin call
 
-Route::view("adminhome", "adminhome");
+
 // Route::view("adminlogin", "adminlogin");
 
 
@@ -89,42 +130,6 @@ Route::view('/upload','upload');
 //admin upload file 
 Route::post("/upload",[AdminController::class,'getUploadFile']);
 
-//add Course
-Route::view("/addcourse","manageCourse.addCourse");
-//view Course
-Route::get("/viewcourse",[AdminController::class,'getCourse']);
-//adding the course form
-Route::post("/addc",[AdminController::class,'addCourse']);
-//edit course
-Route::get("/editcourse",[AdminController::class,'editCourse']);
-//add chapter
-Route::get("/addchapter",[AdminController::class,'getCourseAddChapter']);
-//adding the chapter
-Route::post("/addchap",[AdminController::class,'addChapter']);
-//get chapter
-Route::get("/viewchapter",[AdminController::class,'getChapter']);
 
-//add Question
-
-//subtopic
-Route::get("/addsubtopic",[AdminController::class,'getSubtopicChapter']);
-//adding the subtopic
-Route::post("/addsubt",[AdminController::class,'addSubtopic']);
-//viewsubtopic
-Route::get("/viewsubtopic",[AdminController::class,'getSubTopic']);
-
-//navigate to page
-Route::view("/addquestion", "manageQuest.addquestion");
-//adding the question from form
-Route::post("/add",[AdminController::class,'addQuestion']);
-
-//add Question
-
-//navigate to page 
-
-//navigate to page
-Route::get('/viewquestion',[AdminController::class,'getQuestion']);
-Route::get('/viewcourse',[AdminController::class,'getCourse']);
-Route::get('/trial',[AdminController::class,'trial']);
 //adding the question from form
 // Route::post("/view",[AdminController::class,'addQuestion']);

@@ -53,6 +53,7 @@ class AdminController extends Controller
         $question->opt3 = null;
         $question->opt4 = null;
         $question->correctopt = null;
+        // $question->subtopicID = null;
         $question->imgLink = null;
         $question->vidLink = null;
 
@@ -80,18 +81,18 @@ class AdminController extends Controller
             $question->opt4 = $req->chkopt4_4;
             $question->correctopt = implode(",", $req->correctchkopt4);
         }
+        $question->subtopicId=$req->subtopic;
         $question->imgLink=$req->imgLink;
         $question->vidLink=$req->vidLink;
 
         $question->save();
         // echo $question;
         return redirect('adminhome');
-
     }
+
     function getQuestion(){
         $data = Question::all();
         return view('manageQuest.viewquestion',['data'=>$data]);
-
     }
 
     function addCourse(Request $req){
@@ -101,7 +102,6 @@ class AdminController extends Controller
         $course->save();
 
         return redirect('addchapter');
-        
         // return redirect('adminhome');
     }
     function getCourse(){
@@ -144,6 +144,10 @@ class AdminController extends Controller
         $subtopic->save();
 
         return redirect('addquestion');
+    }
+    function getSubtopicQuestion(){
+        $data = Subtopic::all();
+        return view('manageQuest.addquestion',['data'=>$data]);
     }
     function getSubtopicChapter(){
         $data = Chapter::all();

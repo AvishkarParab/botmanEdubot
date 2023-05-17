@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use DebugBar\DebugBar;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -31,8 +29,7 @@ class UserController extends Controller
     }
 
     function index(){
-        // return $user = DB::table("questions")->find(2);
-        return DB::select("select * from questions");
+        return DB::select("select * from mdl_course");
         
     }
 
@@ -41,19 +38,7 @@ class UserController extends Controller
     }
 
     function gethttp(){
-        $userData = Http::post('http://localhost/moodle/webservice/rest/server.php?',
-            [
-                'wstoken'=>'628ca07c975e4a8a031faae4664b0cee',
-                'wsfunction'=>'core_user_get_users',
-                'moodlewsrestformat'=>'json',
-                'criteria[0][key]'=>'username',
-                'criteria[0][value]'=>'admin',
-            ]
-        );
-
-        $t =Http::post("http://localhost/moodle/webservice/rest/server.php?wstoken=628ca07c975e4a8a031faae4664b0cee&wsfunction=core_user_get_users&moodlewsrestformat=json&criteria[0][key]=username&criteria[0][value]=web_user");
-
-        Log::info($userData);
-        return view('httpuser',["collection"=>$t]);
+        $collection = Http::get("https://reqres.in/api/users?page=2");
+        return view('httpuser',["collection"=>$collection['data']]);
     }
 }

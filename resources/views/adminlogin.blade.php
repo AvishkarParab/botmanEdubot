@@ -22,7 +22,7 @@ form {
 </style>
 <h3 style="display:flex;margin:auto;width:fit-content;">Login</h3>
 <div class="container d-grid mainContainer">
-    <form action="/addadmin" method="post">
+    <form action="/login" method="post">
         <div class="form-group" style="margin-bottom: 1em;">
             <label for="exampleInputEmail1">User ID</label>
             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -38,7 +38,7 @@ form {
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Remember Me</label>
         </div>
-        <a href="/adminhome"><button type="button" class="btn btn-warning text-white">Submit</button></a>
+        <button type="submit" class="btn btn-warning text-white">Submit</button>
     </form>
     @include('components.footer')
 </div>

@@ -1,4 +1,4 @@
-{{-- <div>
+<div>
     <table border="3">
         <tr >
             <td style="width: 60px">ID</td>
@@ -7,12 +7,9 @@
          @foreach ($collection as $item)
             <tr>
             <td style="width: 60px">{{$item['id']}}</td>
-            <td style="width: 60px">{{$item['firstname']}}</td>
+            <td style="width: 60px">{{$item['first_name']}}</td>
             </tr>
         @endforeach
         
     </table>
-</div> --}}
-<?php 
-   print_r($collection["users"][0]["username"]);
-?>
+</div>
